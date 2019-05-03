@@ -1,0 +1,18 @@
+---
+layout: default
+title: Random
+list_title: Random
+permalink: /random/
+---
+{%- if site.posts.size > 0 -%}
+  <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
+  <ul class="post-list">
+    {%- for post in site.posts -%}
+    <li>
+      {% include partials/post_preview_block.html post=post %}
+    </li>
+    {%- endfor -%}
+  </ul>
+
+  <!-- <p class="feed-subscribe"><svg class="svg-icon orange"><use xlink:href="{{ '/assets/minima-social-icons.svg#rss' | relative_url }}"></use></svg><a href="{{ "/feed.xml" | relative_url }}">Subscribe</a></p> -->
+{%- endif -%}

@@ -1,0 +1,24 @@
+---
+layout: post
+title: "New Blog!"
+date: "2019-05-03 00:07:58 -0400"
+categories: [random]
+---
+
+Hello guys!
+
+This is the first post of this blog.  In this blog, I'll share almost everything I've learned or is learning, including **Ongoing Courses**, **Reading Notes**, **Research**, as well as personal topics including **Fitness**, **Gaming**, **TV Shows** and so on.
+
+<!--more-->
+
+Here I'll list some TODOs for this site: ( Updated 5/03 )
+
+- [ ] Write about section
+- [ ] Search Box
+- [ ] Separate Categories to different layouts
+- [ ] Add some custom CSS to make posts more readable
+- [ ] Add Disqus
+- [ ] Pagination
+{: style='list-style-type: none; margin-left:0px'}
+
+Stay Tuned!

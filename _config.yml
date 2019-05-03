@@ -16,17 +16,23 @@
 title: Kuan-Wen Wang
 email: johnny.kwwang.us@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Feel free to shoot me an email about anything I talked about in this blog.
+  I code, I vim, I coffee.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-# twitter_username: jekyllrb
-github_username:  johnnykwwang
+url: "jkwang.co" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username: jekyllrb
+minima:
+  social_links:
+    github:  johnnykwwang
 
 # Build settings
 markdown: kramdown
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-assets
+show_excerpts: true
+excerpt_separator: <!--more-->
+include: ['_pages']
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
