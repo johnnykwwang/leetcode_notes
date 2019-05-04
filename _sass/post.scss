@@ -6,8 +6,18 @@
 
 .post-categories{
   text-align: right;
-  
 }
+.ctr-img{
+  margin: 0 auto;
+  display: block;
+}
+
 .post-content{
-  // font-size: 22px;
+  h1{ font-size:26px; }
+  h2{ font-size:20px; font-weight:bold }
+  h3{ font-size:16px; font-weight:bold }
+}
+
+hr{
+  margin-bottom: 15px;
 }

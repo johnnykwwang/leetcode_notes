@@ -1,0 +1,80 @@
+---
+layout: post
+title: "Computer Vision Semester Review"
+date: "2019-05-03 16:26:27 -0400"
+mathjax: true
+---
+
+This is a personal notes about Computer Vision class, CS5670, in Cornell Tech.
+
+<!--more-->
+
+# Camera
+
+## Modeling Projection
+
+![image](https://user-images.githubusercontent.com/13166286/57166588-acb5e780-6dc8-11e9-9a70-3d5b040f57f3.png){: .ctr-img }
+![image](https://user-images.githubusercontent.com/13166286/57166985-fc48e300-6dc9-11e9-8e58-fc0fbbe8b798.png){: .w50.ctr-img}
+
+## Modeling Camera
+
+To project point $(x,y,z)$ in WCS into camera:
+1. Transform $(x,y,z)$ to CCS $(x_c,y_c,z_c)$
+  * Requires: **Camera Position in WCS**, **Camera Orientation in WCS**
+2. Project $(x_c,y_c,z_c)$ to image plane
+  * Requires: **Camera Intrinsics**
+
+### Camera Parameters
+A camera can be described as:
+
+* **Extrinsic**: Translation $T$: Optical Center from origin of WCS, Rotation $R$: Rotation of the image plane
+* **Intrinsic**: Focal Length $f$ ,  Principal Point $(x_c^{\'}, y_c^{\'})$ ,  Pixel Size $(s_x,s_y)$
+
+### Modeling Camera - Step by Step
+
+| 1. Translate by $-c$         | 2. Rotate by $R$    | 3. Project to Image Plane |
+| ------------- |-------------| --------- |
+| ![image](https://user-images.githubusercontent.com/13166286/57167838-3798e100-6dcd-11e9-96cc-46295729fcc1.png)      | ![image](https://user-images.githubusercontent.com/13166286/57167786-08826f80-6dcd-11e9-8328-49e45fdc9238.png) | ![image](https://user-images.githubusercontent.com/13166286/57167970-c4dc3580-6dcd-11e9-9f66-5d9bafd78156.png)
+
+Summerize in matrix form:
+
+![image](https://user-images.githubusercontent.com/13166286/57168190-c2c6a680-6dce-11e9-8a7e-8bd303c3032b.png){:.w80.ctr-img}
+
+
+## Modeling Distortion
+
+To model distortion, instead of K, use the following step to project CCS to image plane:
+
+![image](https://user-images.githubusercontent.com/13166286/57168283-251fa700-6dcf-11e9-9f01-c5d2ba0d832e.png){:.w80.ctr-img}
+
+
+---
+
+
+# Panorama
+
+How to map points in image 2 to image 1:
+![image](https://user-images.githubusercontent.com/13166286/57168465-d7f00500-6dcf-11e9-85d5-d3bf32937da9.png){:.w50.ctr-img}
+
+| **1. Convert pixels in image 2 to rays in camera 2’s coordinate system** | ![image](https://user-images.githubusercontent.com/13166286/57168616-7b411a00-6dd0-11e9-8b12-22405dfb7449.png){:.w50.ctr-img}   |
+| **2. Convert rays in camera 2’s coordinates to rays in camera 1’s coordinates.** | ![image](https://user-images.githubusercontent.com/13166286/57168634-8c8a2680-6dd0-11e9-9384-69cf73fcf515.png){:.w50.ctr-img}
+| **3. Convert rays in camera 1’s coordinates to pixels in image 1’s coordinates.** | ![image](https://user-images.githubusercontent.com/13166286/57168652-a88dc800-6dd0-11e9-958a-eb760587b8c3.png){:.w50.ctr-img} Where this is a $3 \times 3$ Homography
+
+Repeat this process if more than 2 images.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
