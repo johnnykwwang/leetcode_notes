@@ -1,0 +1,54 @@
+---
+layout: post
+title: "Computer Vision Semester Review - Part.2"
+date: "2019-05-04 12:27:25 -0400"
+categories: [CV]
+mathjax: true
+---
+
+This is a personal notes about Computer Vision class, CS5670, in Cornell Tech.
+
+Covering chapters: **Single-View Modeling**
+<!--more-->
+
+# Math Dark Magics
+## Point and Line Duality
+
+| ![image](https://user-images.githubusercontent.com/13166286/57182133-d83cde80-6e69-11e9-94af-11ad2cfd2ebb.png){:.w300px.ctr-img} | ![image](https://user-images.githubusercontent.com/13166286/57182471-6a92b180-6e6d-11e9-9950-8a0b1a19a48e.png){:.w300px.ctr-img} | 
+| :--: | :--: |
+| **Line $I$ spanned by rays $p_1$ and $p_2$:**<br>$I \bot p_1$ and $I \bot p_2$ $\rightarrow$ $I = p_1 \times p_2$ | **Point $p$ as intersection of $I_1$ and $I_2$**:<br>$p \bot I_1$ and $p \bot I_2$ $\rightarrow$ $p = I_1 \times I_2$ |
+
+
+## Ideal Points and Lines
+
+| **Ideal Point** | **Ideal Line** |
+| :--: | :--: |
+| ![image](https://user-images.githubusercontent.com/13166286/57182885-0ecb2700-6e73-11e9-92ea-6d415e792364.png){:.w300px.ctr-img} | ![image](https://user-images.githubusercontent.com/13166286/57182905-56ea4980-6e73-11e9-9d90-a40f093060d7.png){:.w300px.ctr-img} |
+
+## Vanishing Points
+
+![image](https://user-images.githubusercontent.com/13166286/57183008-cd3b7b80-6e74-11e9-895b-70c24dc32558.png){:.w80.ctr-img}
+
+| **Forumla** | **Properties** |
+| ![image](https://user-images.githubusercontent.com/13166286/57183016-df1d1e80-6e74-11e9-8749-790a36299186.png){:.w50.ctr-img} | Depends only on line direction<br> All Parallel Lines $P_0 + tD$, $P_1+tD$ intersect at $P_{\infty}$ |
+
+![image](https://user-images.githubusercontent.com/13166286/57183081-b9dce000-6e75-11e9-9b21-81a0dc82d48f.png){:.w50.ctr-img}
+<p>
+$$ v = (p_1 \times q_1) \times (p_2 \times q_2) $$
+</p>
+
+## Measuring Height
+
+**Key Idea: Cross Ratio is projective invariant**
+![image](https://user-images.githubusercontent.com/13166286/57183381-3d98cb80-6e7a-11e9-83e1-00901cf716c6.png){:.w50.ctr-img}
+
+**Use $\infty$ as a reference point, get two cross ratios**
+![image](https://user-images.githubusercontent.com/13166286/57183500-f57aa880-6e7b-11e9-9b2d-d1fd5a06f2f9.png){:.w50.ctr-img}
+
+## Camera Calibration
+
+**Goal: Estimate Projection Matrix**
+* Use a known object in the scene
+* Identify correspondence: image point <--> scene point
+* Compute Projection Matrix
+
