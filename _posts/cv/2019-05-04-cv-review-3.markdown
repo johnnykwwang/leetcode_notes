@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Computer Vision Semester Review - 3"
+title: "Computer Vision Semester Review - Part.3"
 date: "2019-05-04 21:06:23 -0400"
 categories: [CV]
 mathjax: true
