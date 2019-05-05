@@ -8,10 +8,10 @@ mathjax: true
 
 This is a personal notes about Computer Vision class, CS5670, in Cornell Tech.
 
-Covering chapters: **Single-View Modeling**
+Covering chapters: **Single-View Modeling**, **Stereo**
 <!--more-->
 
-# Math Dark Magics
+# Math Dark Magics & Other Stuff
 ## Point and Line Duality
 
 | ![image](https://user-images.githubusercontent.com/13166286/57182133-d83cde80-6e69-11e9-94af-11ad2cfd2ebb.png){:.w300px.ctr-img} | ![image](https://user-images.githubusercontent.com/13166286/57182471-6a92b180-6e6d-11e9-9950-8a0b1a19a48e.png){:.w300px.ctr-img} | 
@@ -33,9 +33,8 @@ Covering chapters: **Single-View Modeling**
 | ![image](https://user-images.githubusercontent.com/13166286/57183016-df1d1e80-6e74-11e9-8749-790a36299186.png){:.w50.ctr-img} | Depends only on line direction<br> All Parallel Lines $P_0 + tD$, $P_1+tD$ intersect at $P_{\infty}$ |
 
 ![image](https://user-images.githubusercontent.com/13166286/57183081-b9dce000-6e75-11e9-9b21-81a0dc82d48f.png){:.w50.ctr-img}
-<p>
-$$ v = (p_1 \times q_1) \times (p_2 \times q_2) $$
-</p>
+
+$$ \large{v = (p_1 \times q_1) \times (p_2 \times q_2)} $$
 
 ## Measuring Height
 
@@ -51,4 +50,43 @@ $$ v = (p_1 \times q_1) \times (p_2 \times q_2) $$
 * Use a known object in the scene
 * Identify correspondence: image point <--> scene point
 * Compute Projection Matrix
+
+---
+
+# Stereo
+
+## Basic Stereo
+
+**Idea: Stereo Matching Based on SSD(Sum of Squared Distance)**
+
+![image](https://user-images.githubusercontent.com/13166286/57184105-59a16a80-6e84-11e9-9847-880de08e9bae.png){:.w50.ctr-img}
+
+* For each epipolar line:
+  * for each pixel in left:
+    * compare w/ every pixel on the same ep-line in right
+    * pick pixel with minimum match cost
+
+## Stereo as Energy Minimization
+
+**Idea: Match Quality + Smoothness**
+
+
+| Disparity Map | Energy Function | SSD between windows $I(x,y)$ and $J(x+d(x,y),y)$ | Simple Matching |
+| $d(x,y)$ | $E(d)$ | $C(x,y,d(x,y))$ | $d(x,y) = \underset{d'}{\operatorname{argmin}} C(x,y,d')$ |
+
+**With Smoothness**
+* Smoothness: If two pixels are adjacent, they should (usually) move about the same amount 
+* Better Objective Function:
+
+| Objective Function | Smoothness Cost | Smoothness Meaning |
+| $$ {E(d) = E_d(d) + \lambda E_S(d)} $$  | $$ {E_s(d) = \sum_{(p,q) \in I} V(d_p,d_q)} $$ | This is used to "penalize" those who matched with a longer distance, such that we encourage adjacent pixels move about the same amount. |
+
+* This is solvable via Dynamic Programming!
+* But it sucks.
+
+## Depth from Disparity 
+
+**BE VERY CAREFUL WITH THIS**{:.red}
+
+![image](https://user-images.githubusercontent.com/13166286/57184554-08e14000-6e8b-11e9-9ad4-a5d122be213c.png){:.w50.ctr-img}
 
