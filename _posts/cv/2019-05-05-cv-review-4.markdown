@@ -2,7 +2,8 @@
 layout: post
 title: "Computer Vision Semester Review - Part.4"
 date: "2019-05-05 12:16:49 -0400"
-categories: [CV]
+categories: [courses]
+tags: [cv]
 mathjax: true
 ---
 

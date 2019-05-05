@@ -2,7 +2,8 @@
 layout: post
 title: "Computer Vision Semester Review - Part.1"
 date: "2019-05-03 16:26:27 -0400"
-categories: [CV]
+categories: [courses]
+tags: [cv]
 mathjax: true
 ---
 
@@ -30,14 +31,17 @@ To project point $(x,y,z)$ in WCS into camera:
 ### Camera Parameters
 A camera can be described as:
 
-* **Extrinsic**: Translation $T$: Optical Center from origin of WCS, Rotation $R$: Rotation of the image plane
+* **Extrinsic**: 
+  * Translation $T$: Optical Center from origin of WCS
+  * Rotation $R$: Rotation of the image plane
 * **Intrinsic**: Focal Length $f$ ,  Principal Point $(x_c^{\'}, y_c^{\'})$ ,  Pixel Size $(s_x,s_y)$
+  * Principal Point: coordinate of image center of the camera.  Usually defined $(0,0)$ for convenience.
 
 ### Modeling Camera - Step by Step
 
 | 1. Translate by $-c$         | 2. Rotate by $R$    | 3. Project to Image Plane |
 | ------------- |-------------| --------- |
-| ![image](https://user-images.githubusercontent.com/13166286/57167838-3798e100-6dcd-11e9-96cc-46295729fcc1.png)      | ![image](https://user-images.githubusercontent.com/13166286/57167786-08826f80-6dcd-11e9-8328-49e45fdc9238.png) | ![image](https://user-images.githubusercontent.com/13166286/57167970-c4dc3580-6dcd-11e9-9f66-5d9bafd78156.png)
+| ![image](https://user-images.githubusercontent.com/13166286/57167838-3798e100-6dcd-11e9-96cc-46295729fcc1.png)      | ![image](https://user-images.githubusercontent.com/13166286/57167786-08826f80-6dcd-11e9-8328-49e45fdc9238.png) | $$ \mathbf{K} = \begin{bmatrix} -fs_x & 0 & x'_c \\ 0 & -fs_y & y'_c \\ 0 & 0 & 1 \end{bmatrix} $$ 
 
 Summerize in matrix form:
 
@@ -48,7 +52,7 @@ Summerize in matrix form:
 
 To model distortion, instead of K, use the following step to project CCS to image plane:
 
-![image](https://user-images.githubusercontent.com/13166286/57168283-251fa700-6dcf-11e9-9f01-c5d2ba0d832e.png){:.w80.ctr-img}
+![image](https://user-images.githubusercontent.com/13166286/57168283-251fa700-6dcf-11e9-9f01-c5d2ba0d832e.png){:.w50.ctr-img}
 
 
 ---
