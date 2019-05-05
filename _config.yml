@@ -19,7 +19,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   I code, I vim, I coffee.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "jkwang.co" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
+google_analytics: UA-139592064-1
 minima:
   social_links:
     github:  johnnykwwang
