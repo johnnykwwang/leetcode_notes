@@ -8,7 +8,7 @@ mathjax: true
 
 This is a personal notes about Computer Vision class, CS5670, in Cornell Tech.
 
-Covering chapters: **Two-View Geometry**
+Covering chapters: **Two-View Geometry**, **Light**, **Photometric Stereo**
 
 <!--more-->
 
@@ -70,6 +70,9 @@ Where:
 | $\mathbf{I}$: observed image intensity | $\mathbf{k_d}$: object albedo |
 | $\mathbf{N}$: surface normal | $\mathbf{L}$: light source direction |
 
+---
+
+# Photometric Stereo
 
 ## Photometric Stereo - Get Normal
 

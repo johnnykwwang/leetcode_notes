@@ -1,0 +1,18 @@
+---
+layout: post
+title: "Computer Vision Semester Review - Part.4"
+date: "2019-05-05 12:16:49 -0400"
+categories: [CV]
+mathjax: true
+---
+
+
+This is a personal notes about Computer Vision class, CS5670, in Cornell Tech.
+
+Covering chapters: **Multi-View Stereo**
+
+<!--more-->
+
+# Multi-View Stereo
+
+Definition:  given several images of the same object or scene, compute a representation of its 3D shape

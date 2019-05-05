@@ -3,6 +3,7 @@ layout: post
 title: "New Blog!"
 date: "2019-05-03 00:07:58 -0400"
 categories: [random]
+comments: true
 ---
 
 Hello guys!
