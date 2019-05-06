@@ -1,0 +1,41 @@
+---
+layout: post
+title: "Computer Vision Semester Review - Part.7"
+date: "2019-05-06 00:52:21 -0400"
+categories: [courses]
+tags: [cv]
+mathjax: true
+---
+
+This is a personal note about Computer Vision class, CS5670, in Cornell Tech.
+
+Covering chapters: **Affine Transformations**
+
+<!--more-->
+
+# Affine Transformations
+
+## Definition 
+
+We call any 3 by 3 matrix with last row $$\begin{bmatrix} 0 & 0 & 1 \end{bmatrix}$$ an affine transformation:  $$ \begin{bmatrix} a & b & c \\ d & e & f \\ 0 & 0 & 1 \end{bmatrix} $$
+
+## Basic Affine Transformations
+
+| Translate | Scale | 2D Rotation | Shear |
+| - | - | - |
+| ![image](https://user-images.githubusercontent.com/13166286/57207283-7760f380-6f9a-11e9-9853-90c320e24aaf.png) | ![image](https://user-images.githubusercontent.com/13166286/57207288-7af47a80-6f9a-11e9-8b32-a64093f20e4a.png) | ![image](https://user-images.githubusercontent.com/13166286/57207292-7def6b00-6f9a-11e9-83b0-6ddb5d409d23.png) | ![image](https://user-images.githubusercontent.com/13166286/57207297-8182f200-6f9a-11e9-84bb-6c5d13f4cc27.png)
+
+
+## Homographies
+
+**Add 2 more variable**: 3 by 3 matrix with last row $$\begin{bmatrix} g & h & 1 \end{bmatrix}$$: Homography:  $$ \begin{bmatrix} a & b & c \\ d & e & f \\ g & h & 1 \end{bmatrix} $$
+
+
+---
+
+# Warping
+
+*How to transform an image in the image coordinate*
+
+| Forward Warping | ![image](https://user-images.githubusercontent.com/13166286/57207421-9c099b00-6f9b-11e9-8ddf-b8f3f2f0d994.png){:.w300px.ctr-img} |
+| Inverse Warping | ![image](https://user-images.githubusercontent.com/13166286/57207431-b3e11f00-6f9b-11e9-9c47-5132e6e35dca.png){:.w300px.ctr-img} |
