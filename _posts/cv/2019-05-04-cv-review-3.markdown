@@ -50,6 +50,12 @@ So...
 
 ![image](https://user-images.githubusercontent.com/13166286/57187161-32b15b80-6eb9-11e9-9397-0d9f0aff402c.png){:.w50.ctr-img}
 
+### Special Case: Rectified Case
+
+![image](https://user-images.githubusercontent.com/13166286/57202776-51762780-6f77-11e9-8d8c-5d2a04030a6c.png){:.w300px.ctr-img}
+
+![image](https://user-images.githubusercontent.com/13166286/57202794-71a5e680-6f77-11e9-87f4-fb3448e0aa5f.png){:.w50.ctr-img}
+
 ---
 
 # Light
