@@ -9,7 +9,7 @@ mathjax: true
 
 This is a personal note about Computer Vision class, CS5670, in Cornell Tech.
 
-Covering chapters: **Affine Transformations**
+Covering chapters: **Affine Transformations**, **Homographies**, **Warping**, **RANSAC**
 
 <!--more-->
 
@@ -39,3 +39,23 @@ We call any 3 by 3 matrix with last row $$\begin{bmatrix} 0 & 0 & 1 \end{bmatrix
 
 | Forward Warping | ![image](https://user-images.githubusercontent.com/13166286/57207421-9c099b00-6f9b-11e9-8ddf-b8f3f2f0d994.png){:.w300px.ctr-img} |
 | Inverse Warping | ![image](https://user-images.githubusercontent.com/13166286/57207431-b3e11f00-6f9b-11e9-9c47-5132e6e35dca.png){:.w300px.ctr-img} |
+
+
+---
+
+# RAndom SAmple Consensus (RANSAC)
+
+## Algorithm
+1. Randomly choose s samples
+  * Typically s = minimum sample size that lets you fit a model
+2. Fit a model (e.g., line) to those samples
+3. Count the number of inliers that approximately fit the model
+4. Repeat N times
+5. Choose the model that has the largest set of inliers
+
+## How Many Rounds?
+
+* If we have to choose $s$ samples each time with an outlier ratio $e$, and we want the right answer with probability $p$:
+
+$$ N > \frac{log(1-p)}{\log(1-(1-e)^s)} $$
+
