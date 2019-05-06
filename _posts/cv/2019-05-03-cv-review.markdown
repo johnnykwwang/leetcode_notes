@@ -7,7 +7,7 @@ tags: [cv]
 mathjax: true
 ---
 
-This is a personal notes about Computer Vision class, CS5670, in Cornell Tech.
+This is a personal note about Computer Vision class, CS5670, in Cornell Tech.
 
 Covering chapters: **Camera**, **Panorama**
 

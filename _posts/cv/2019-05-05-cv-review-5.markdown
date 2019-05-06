@@ -1,0 +1,78 @@
+---
+layout: post
+title: "Computer Vision Semester Review - Part.5"
+date: "2019-05-05 18:59:46 -0400"
+categories: [courses]
+tags: [cv]
+mathjax: true
+---
+
+This is a personal note about Computer Vision class, CS5670, in Cornell Tech.
+
+Covering chapters: **Filter**, **Edge Detection**, **Re-Sampling**
+
+<!--more-->
+
+# Filter & Convolution
+
+## Gaussian Filter
+
+![image](https://user-images.githubusercontent.com/13166286/57201583-e02f7800-6f68-11e9-83bf-138ed21ab6cd.png){:.w80.ctr-img}
+
+Gaussian filter removes "high-frequency" components, also called **low-pass filter**
+
+If we use the original image to subtract the blurred image, we get the detail of image:
+
+![image](https://user-images.githubusercontent.com/13166286/57201608-34d2f300-6f69-11e9-95a8-719bb0cfe681.png){:.w80.ctr-img}
+
+This is called **high-pass filter**
+
+## Sobel Operator
+
+**Motivation: Since image contains lots of noise, we first apply gaussian to smooth, then find edge**
+
+![image](https://user-images.githubusercontent.com/13166286/57201648-d8bc9e80-6f69-11e9-9d6f-602db8102d03.png){:.w80.ctr-img}
+
+Since we differentiate via convolution, we can do:
+
+$$ \frac{d}{dx}(f \ast h) = f \ast \frac{d}{dx}h $$
+
+For the $\frac{d}{dx}h$, we can approximate via **Sobel Operator**:
+
+![image](https://user-images.githubusercontent.com/13166286/57201758-5503b180-6f6b-11e9-853e-6f7515f1ad1d.png){:.w50.ctr-img}
+
+## Canny Edge Detector
+
+| Steps | Results |
+| 0. Original Image | ![image](https://user-images.githubusercontent.com/13166286/57201953-c3497380-6f6d-11e9-852a-8062c9259c3e.png){:.w300px} | 
+| 1. Filter Image with <br> Derivative of Gaussian, find gradient magnitude | ![image](https://user-images.githubusercontent.com/13166286/57201935-a14ff100-6f6d-11e9-9d55-951f5852c1e5.png){:.w300px} | 
+| 2. Non-Maximum Suppression | ![image](https://user-images.githubusercontent.com/13166286/57201959-cba1ae80-6f6d-11e9-93bf-3cb9854c865b.png){:.w300px} |
+| 3. Thresholding & Linking:<br>Define 2 thresholds $T$, $t$, separate 3 cases:<br> 1. $R > T$: strong edge <br> 2. $R < T$ but $R > t$: weak edge <br>3. $R < t$: no edge <br><br> Then define:<br> 1. Strong edges are edges<br>2. Weak edges are edges iff they connect to strong edge| ![image](https://user-images.githubusercontent.com/13166286/57202041-baa56d00-6f6e-11e9-9f0e-d52a08185a65.png){:.w300px} |
+
+
+---
+
+# Re-Sampling
+
+**Motivation**: Direct sub-sampling of image would cause **alias**.
+
+![image](https://user-images.githubusercontent.com/13166286/57202118-81213180-6f6f-11e9-91bc-0efe01ef5a5e.png){:.w80.ctr-img}
+
+## Gaussian Pre-filtering
+
+*Filter the image, then subsample.*
+
+![image](https://user-images.githubusercontent.com/13166286/57202122-9a29e280-6f6f-11e9-904b-ff3a19f73d6f.png){:.w80.ctr-img}
+
+## Gaussian Pyramid
+
+| Process | Illustration |
+| - | - |
+| ![image](https://user-images.githubusercontent.com/13166286/57202135-d8270680-6f6f-11e9-8fc3-6b9cdd1a1950.png) | ![image](https://user-images.githubusercontent.com/13166286/57202139-e07f4180-6f6f-11e9-8b01-77ba7f09c378.png) |
+
+## Upsampling
+
+*Requires Linear Interpolation of nearby pixels*
+
+![image](https://user-images.githubusercontent.com/13166286/57202159-32c06280-6f70-11e9-8b92-c24b20e7ed3a.png){:w80.ctr-img}
+
