@@ -1,0 +1,93 @@
+---
+layout: post
+title: "001: Two Sum"
+date: "2019-05-18 19:01:16 -0400"
+categories: [leetcode]
+---
+
+<p>Given an array of integers, return <strong>indices</strong> of the two numbers such that they add up to a specific target.</p>
+
+<p>You may assume that each input would have <strong><em>exactly</em></strong> one solution, and you may not use the <em>same</em> element twice.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre>
+Given nums = [2, 7, 11, 15], target = 9,
+
+Because nums[<strong>0</strong>] + nums[<strong>1</strong>] = 2 + 7 = 9,
+return [<strong>0</strong>, <strong>1</strong>].
+</pre>
+
+<p>&nbsp;</p>
+
+<!--more-->
+
+# Solutions
+## Hash
+
+We can solve this problem by simply:
+* Loop thru each element of the array
+  * if (target-array) is seen before, output both element's index
+  * else add element's value and index to "seen"
+
+| **Time Complexity:** | O(n) | **Space Complexity:** | O(n) |
+
+```python
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        
+        nums_seen_v2i = {}
+        for i, num in enumerate(nums):
+            if target-num in nums_seen_v2i:
+                return nums_seen_v2i[target-num], i
+            else:
+                nums_seen_v2i[num] = i
+```
+
+
+---
+
+
+## Two Pointers
+
+We can also solve this by #TwoPointers.
+
+* Sort the array in ascending order.
+* Set left=0 and right=len(nums)-1, which is the leftmost and rightmost element
+* Try Adding: s = nums[left]+nums[right]
+  * if s==target: return
+  * if s\<target: left++
+  * if s\>target: right--
+
+| **Time Complexity:** | O(nlogn) | **Space Complexity:** | O(n) |
+
+But if already sorted:
+
+| **Time Complexity:** | O(n) | **Space Complexity:** | O(1) |
+
+```python
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        nums = sorted(enumerate(nums),key=lambda x: x[1]) # nums are now (i,v)
+        left, right = 0, len(nums)-1
+        
+        while left<right+1:
+            s = nums[left][1] + nums[right][1]
+            if s == target:
+                return nums[left][0],nums[right][0]
+            elif s <= target:
+                left += 1
+            elif s >= target:
+                right -= 1
+```
+

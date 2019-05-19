@@ -1,0 +1,20 @@
+---
+layout: post
+title: "How I should Leetcode: 2019"
+date: "2019-05-16 21:55:10 -0400"
+categories: [leetcode]
+---
+
+This is a reminder of how I should be doing leetcode problems during my next round of job hunting in 2019.  I would be seeking **Full-Time(New Grad) Software Developer / Machine Learning Engineer** or related positions.
+
+<!--more-->
+
+During last year, I also done quite some leetcode problems.  Below I would outline some of the issues that needs to be addressed.  Most importantly, I would like to have an optimized strategy for doing leetcode problems.
+
+| **Issues** | **Possible Solution** |
+| Total Number of Problem Done | Do more.  Do problems with structure and complete similar topics efficiently. |
+| Solutions Not Well-Documented | Write down thought process before coding.  This allows practice for interview and document where my thought process could go wrong. |
+| Ability to Think while Taking | Do more mocks, more talk-aloud-problem-solving. |
+
+
+| **Issues** | **Possible Solution** |

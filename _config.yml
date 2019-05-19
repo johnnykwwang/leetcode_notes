@@ -35,6 +35,9 @@ plugins:
 show_excerpts: true
 excerpt_separator: <!--more-->
 include: ['_pages']
+highlighter: rouge
+# highlighter: pygments
+
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
