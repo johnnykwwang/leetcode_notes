@@ -67,7 +67,7 @@ We can also solve this by #TwoPointers.
 
 | **Time Complexity:** | O(nlogn) | **Space Complexity:** | O(n) |
 
-But if already sorted:
+But if already sorted ( [167. Two Sum II - Input array is sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/) ) :
 
 | **Time Complexity:** | O(n) | **Space Complexity:** | O(1) |
 

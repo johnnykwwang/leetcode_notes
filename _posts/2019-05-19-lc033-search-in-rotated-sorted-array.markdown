@@ -86,7 +86,7 @@ class Solution(object):
                     start=mid
 
         return -1
-  ```
+```
 
 # Techniques
 
@@ -107,3 +107,36 @@ while start + 1 < end:
 This is more useful than setting `start<end` because it ensures `start`,`mid`,`end` are 3 different elements.
 
 Notice that if using this kind of binary search, we might need to add edge cases such as when length is 0,1 or 2.
+
+# Related Problems
+
+## [153. Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/)
+
+This problem is easier than searching specific element.  Code as follows.  Worth noting that sometimes it's important to add edge case handling at the end of the binary search.  The `start` and `end` pointer after binary search would be adjacent, so we can compare them somehow to output an edge case answer.
+
+```python
+class Solution(object):
+    def findMin(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        start, end = 0, len(nums)-1
+        if len(nums)==1:
+            return nums[0]
+        if len(nums)==2:
+            return min(nums[0],nums[1])
+
+        while start+1 < end:
+
+            mid = start + (end-start)//2
+
+            if nums[start] > nums[mid] and nums[mid] < nums[end] and start+1==mid:
+                return nums[mid]
+            if nums[mid] < nums[-1]:
+                end = mid
+            else:
+                start = mid
+
+        return min(nums[start],nums[end]) # edge case
+```
