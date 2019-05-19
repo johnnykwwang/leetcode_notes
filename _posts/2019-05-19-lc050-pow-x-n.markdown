@@ -1,0 +1,128 @@
+---
+layout: post
+title: "050: Pow(x, n)"
+date: "2019-05-19 14:58:37 -0400"
+categories: [leetcode]
+---
+
+<p>Implement <a href="http://www.cplusplus.com/reference/valarray/pow/" target="_blank">pow(<em>x</em>, <em>n</em>)</a>, which calculates&nbsp;<em>x</em> raised to the power <em>n</em> (x<sup><span style="font-size:10.8333px">n</span></sup>).</p>
+
+<!--more-->
+
+<p><strong>Example 1:</strong></p>
+
+<pre>
+<strong>Input:</strong> 2.00000, 10
+<strong>Output:</strong> 1024.00000
+</pre>
+
+<p><strong>Example 2:</strong></p>
+
+<pre>
+<strong>Input:</strong> 2.10000, 3
+<strong>Output:</strong> 9.26100
+</pre>
+
+<p><strong>Example 3:</strong></p>
+
+<pre>
+<strong>Input:</strong> 2.00000, -2
+<strong>Output:</strong> 0.25000
+<strong>Explanation:</strong> 2<sup>-2</sup> = 1/2<sup>2</sup> = 1/4 = 0.25
+</pre>
+
+<p><strong>Note:</strong></p>
+
+<ul>
+	<li>-100.0 &lt; <em>x</em> &lt; 100.0</li>
+	<li><em>n</em> is a 32-bit signed integer, within the range&nbsp;[&minus;2<sup>31</sup>,&nbsp;2<sup>31&nbsp;</sup>&minus; 1]</li>
+</ul>
+
+# Solutions
+
+## Binary Search, Recursive
+
+The recursive method is easier to write, but limits the computation to system(recursive stack size), and could cause unintended overflow.  Keep in mind that if n is negative, in python we have some counterintuitive stuff like `-3//2 = -2`
+
+| **Time Complexity:** | O(log(n)) | **Space Complexity:** | O(log(n)) |
+
+```python
+class Solution(object):
+    def myPow(self, x, n):
+        """
+        :type x: float
+        :type n: int
+        :rtype: float
+        """
+        if n==0:
+            return 1
+        if n==-1:
+            return 1/x
+        if n==1:
+            return x
+        if n%2==1:
+            if n>0:
+                return (self.myPow(x,n//2) ** 2) * x
+            else:
+                return (self.myPow(x,n//2+1) ** 2) * (1/x)
+        else:
+            return (self.myPow(x,n//2) ** 2)
+```
+
+---
+
+## Binary Search, Non-recursive
+
+Basically, the non-recursive version works as follows:
+
+Think of having x * x * x ...... x, for a total of n times.
+whenever this n is an odd number, we take that n and put it in the final product.
+then we change the x to x^2 so that there would be (x^2) * (x^2) * ... (x^2) --> x * x * x ... for a total of n/2 times.
+repeat this process and return the final product.
+
+Also, this problem can be optimized by utilizing **Bit-wise Operations**.
+
+| **Time Complexity:** | O(log(n)) | **Space Complexity:** | O(1) |
+
+```python
+class Solution(object):
+    def myPow(self, x, n):
+        """
+        :type x: float
+        :type n: int
+        :rtype: float
+        """        
+        
+        product = 1.0
+        if n<0:
+            x = 1/x 
+            n = -n
+
+        while n != 0:
+            if n & 1:  # equivalant to n%2==1
+                product = product * x 
+            x = x*x
+            n >>= 1   # equivalant to n = n//2
+        return product    
+```
+
+---
+
+# Techniques
+
+## Bitwise Operations
+
+The following is a list of bitwise operations that might come in handy in interview problems:
+
+( Source: [Tutorials Point](https://www.tutorialspoint.com/python/bitwise_operators_example.htm) )
+
+| Operator | Description | Example |
+| & Binary AND | Operator copies a bit to the result if it exists in both operands | (a & b) (means 0000 1100) |
+| \| Binary OR | It copies a bit if it exists in either operand. | (a \| b) = 61 (means 0011 1101) |
+| ^ Binary XOR | It copies the bit if it is set in one operand but not both. | (a ^ b) = 49 (means 0011 0001) |
+| ~ Binary Ones Complement | It is unary and has the effect of 'flipping' bits. | (~a ) = -61 (means 1100 0011 in 2's complement form due to a signed binary number. |
+| << Binary Left Shift | The left operands value is moved left by the number of bits specified by the right operand. | a << 2 = 240 (means 1111 0000) |
+| >> Binary Right Shift | The left operands value is moved right by the number of bits specified by the right operand. | a >> 2 = 15 (means 0000 1111) |
+
+
+

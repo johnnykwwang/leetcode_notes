@@ -9,6 +9,8 @@ categories: [leetcode]
 
 <p>You may assume that each input would have <strong><em>exactly</em></strong> one solution, and you may not use the <em>same</em> element twice.</p>
 
+<!--more-->
+
 <p><strong>Example:</strong></p>
 
 <pre>
@@ -20,7 +22,6 @@ return [<strong>0</strong>, <strong>1</strong>].
 
 <p>&nbsp;</p>
 
-<!--more-->
 
 # Solutions
 ## Hash

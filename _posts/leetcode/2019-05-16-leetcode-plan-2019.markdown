@@ -9,12 +9,26 @@ This is a reminder of how I should be doing leetcode problems during my next rou
 
 <!--more-->
 
+## Last Year's Lesson
+
 During last year, I also done quite some leetcode problems.  Below I would outline some of the issues that needs to be addressed.  Most importantly, I would like to have an optimized strategy for doing leetcode problems.
 
 | **Issues** | **Possible Solution** |
 | Total Number of Problem Done | Do more.  Do problems with structure and complete similar topics efficiently. |
 | Solutions Not Well-Documented | Write down thought process before coding.  This allows practice for interview and document where my thought process could go wrong. |
-| Ability to Think while Taking | Do more mocks, more talk-aloud-problem-solving. |
+| Ability to Think while Taking | Do more mocks, more talk-aloud-problem-solving, write down thoughts before actually coding. |
+
+Having all these, I designed the following leetcode flow.
+
+## New Leetcode Flow 
+
+| Step | Action |
+| 1 | Find problems by topics |
+| 2 | Copy leetcode problem and write in blog post (\*) |
+| 3 | Explain approaches in plain words | 
+| 4 | Code on Leetcode, minimize submit attempt |
+| 5 | If pass, consider alternate solution and repeat from Step.3 |
+
+(\*) Note: To avoid repetitive tasks, I wrote a [python script](https://github.com/johnnykwwang/macros/blob/master/lc_md.py) to convert leetcode url to my blog post along with problem content.
 
 
-| **Issues** | **Possible Solution** |
