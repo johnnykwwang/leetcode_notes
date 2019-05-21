@@ -1,0 +1,130 @@
+---
+layout: post
+title: "015: 3Sum"
+date: "2019-05-20 21:06:16 -0400"
+categories: [leetcode]
+mathjax: true
+---
+
+<p>Given an array <code>nums</code> of <em>n</em> integers, are there elements <em>a</em>, <em>b</em>, <em>c</em> in <code>nums</code> such that <em>a</em> + <em>b</em> + <em>c</em> = 0? Find all unique triplets in the array which gives the sum of zero.</p>
+<!--more-->
+
+<p><strong>Note:</strong></p>
+
+<p>The solution set must not contain duplicate triplets.</p>
+
+
+<p><strong>Example:</strong></p>
+
+<pre>
+Given array nums = [-1, 0, 1, 2, -1, -4],
+
+A solution set is:
+[
+  [-1, 0, 1],
+  [-1, -1, 2]
+]
+</pre>
+
+# Solutions
+
+This is sort of a complicated version of the two-pointer algorithm.  The idea is that if you wrap around the two-pointer loop with another normal $O(n)$ kind of loop, we can essentially determine 3 pointers within $O(n^{2})$ time.
+
+It's also worth mentioning that there are two types of duplication handling:
+* add solutions as tuples to a set.
+* move pointers across identical elements to avoid producing duplicated solutions.
+
+For readability, here's the first solution:
+
+```python
+class Solution(object):
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+
+        if len(nums)<=2:
+            return []
+
+        nums = sorted(nums)
+        i = 0
+        sols = set()
+
+        while i<len(nums):
+            j, k = i+1, len(nums)-1
+            while j<k:
+                s = nums[i]+nums[j]+nums[k]
+                if s==0:
+                    sols.add((nums[i],nums[j],nums[k]))
+                    j+=1
+                    k-=1
+                elif s < 0:
+                    j = j+1
+                else:
+                    k = k-1
+            i += 1
+
+        sols = list( [ list(s) for s in sols] )
+        return sols
+```
+
+# Related Problems
+
+## [16. 3Sum Closest](https://leetcode.com/problems/3sum-closest/description/) 
+
+<p>Given an array <code>nums</code> of <em>n</em> integers and an integer <code>target</code>, find three integers in <code>nums</code>&nbsp;such that the sum is closest to&nbsp;<code>target</code>. Return the sum of the three integers. You may assume that each input would have exactly one solution.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre>
+Given array nums = [-1, 2, 1, -4], and target = 1.
+
+The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
+</pre>
+
+### Solutions
+
+This is almost the same as the 3Sum problem, except that now we're comparing target with sum and see if we can get any closer.  We also separate the positive and negative case just to be careful.
+
+```python
+class Solution(object):
+    def threeSumClosest(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+
+        nums = sorted(nums)
+        dist = 2 ** 32
+        closest = 0
+
+        i = 0
+        while i < len(nums):
+            j = i+1
+            k = len(nums)-1
+            while j<k:
+                c = nums[i] + nums[j] + nums[k]
+                if c - target > 0:
+                    if c-target > dist:
+                        k -= 1
+                    else:
+                        dist = c-target
+                        closest = c
+                        k -= 1
+
+                elif c - target < 0:
+                    if target - c > dist:
+                        j += 1
+                    else:
+                        dist = target-c
+                        closest = c
+                        j += 1
+                else:
+                    return target
+            i += 1
+
+        return closest
+```
+
