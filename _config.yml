@@ -36,8 +36,10 @@ show_excerpts: true
 excerpt_separator: <!--more-->
 include: ['_pages']
 highlighter: rouge
+header_pages: 
+  - _pages/about.md
+  - _pages/leetcodes.html
 # highlighter: pygments
-
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
