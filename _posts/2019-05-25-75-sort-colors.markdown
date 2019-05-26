@@ -1,0 +1,65 @@
+---
+layout: post
+title: "075: Sort Colors"
+date: "2019-05-25 23:55:56 -0700"
+categories: [leetcode]
+---
+
+<p>Given an array with <em>n</em> objects colored red, white or blue, sort them <strong><a href="https://en.wikipedia.org/wiki/In-place_algorithm" target="_blank">in-place</a>&nbsp;</strong>so that objects of the same color are adjacent, with the colors in the order red, white and blue.</p>
+
+<p>Here, we will use the integers 0, 1, and 2 to represent the color red, white, and blue respectively.</p>
+
+<!--more-->
+
+<p><strong>Note:</strong>&nbsp;You are not suppose to use the library&#39;s sort function for this problem.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre>
+<strong>Input:</strong> [2,0,2,1,1,0]
+<strong>Output:</strong> [0,0,1,1,2,2]</pre>
+
+<p><strong>Follow up:</strong></p>
+
+<ul>
+	<li>A rather straight forward solution is a two-pass algorithm using counting sort.<br />
+	First, iterate the array counting number of 0&#39;s, 1&#39;s, and 2&#39;s, then overwrite array with total number of 0&#39;s, then 1&#39;s and followed by 2&#39;s.</li>
+	<li>Could you come up with a&nbsp;one-pass algorithm using only constant space?</li>
+</ul>
+
+# Solutions
+
+This is a 3-way partition problem.  The basic idea of approaching this is:
+
+1. We don't need to swap or sort, because by some condition we would know the correct value to put on each index.
+2. Just like [283. Move Zeroes](https://leetcode.com/problems/move-zeroes/description/), we can keep a pointer pointing at the next element that should be set to the correct value.
+  * In this case, we need two pointers `p0` and `p1`.
+3. When looping through elements `nums[k]`:
+  * record the element to `v`, then override `nums[k]` to 2
+  * If `v` is 2, dont do anything
+  * If `v` is 1, we know that we changed a `1` to `2`, we must give a `1` back at `nums[p1]`.  So we set `nums[p1]` to 1, `p1+=1`
+  * If `v` is 0, we know that we changed a `0` to `2`, we must give a `0` back at `nums[p0]`.  But! this also means **pushing the `1`s forward**, so we first have to set another `nums[p1]` to 1, then we set the `0` at `nums[p0]`  Then `p0, p1 = p0+1, p1+1`
+
+```python
+class Solution(object):
+    def sortColors(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: None Do not return anything, modify nums in-place instead.
+        """
+        p0, p1 = 0, 0
+
+        for p in range(len(nums)):
+            v = nums[p]
+            nums[p] = 2
+
+            if v==1:
+                nums[p1] = 1
+                p1+=1
+            elif v==0:
+                nums[p1] = 1
+                p1+=1
+                nums[p0] = 0
+                p0+=1
+        p0, p1 = 0, 0
+```

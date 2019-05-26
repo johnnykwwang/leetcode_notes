@@ -97,3 +97,69 @@ class Solution(object):
             slow, fast = nums[slow], nums[fast]
         return slow
 ```
+
+# Related Problems
+
+## [142. Linked List Cycle II](https://leetcode.com/problems/linked-list-cycle-ii/description/)
+
+we use the same technique to find the node where the cycle begins.
+
+```python
+class Solution(object):
+    def detectCycle(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        fast, slow = head, head
+        meet = None
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+            if fast==slow:
+                meet = slow
+                break
+        if meet is None:
+            return None
+        
+        fast, slow = head, meet
+        while fast != slow:
+            fast, slow = fast.next, slow.next
+            
+        return slow
+```
+
+## [19. Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/)
+
+Also the same kind of two-pointer in linked list problem.  In this problem, we:
+
+1. Give the fast pointer a n-node lead
+2. Then traverse the list with the slow pointer at the same speed.
+3. When reaching the end, the slow pointer would be at node right before the node we're deleting.
+
+```python
+class Solution(object):
+    def removeNthFromEnd(self, head, n):
+        """
+        :type head: ListNode
+        :type n: int
+        :rtype: ListNode
+        """
+        
+        fast = head
+        slow = head
+        for i in range(n):
+            fast = fast.next
+        
+        if fast is None:
+            head = head.next
+            return head
+        
+        while fast and fast.next:
+            fast = fast.next
+            slow = slow.next
+            
+        slow.next = slow.next.next
+        
+        return head
+```
