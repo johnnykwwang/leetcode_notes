@@ -61,5 +61,63 @@ class Solution(object):
                 p1+=1
                 nums[p0] = 0
                 p0+=1
-        p0, p1 = 0, 0
+```
+
+---
+
+# Related Problems
+
+## [283. Move Zeroes](https://leetcode.com/problems/move-zeroes/description/)
+
+This is the easier version.  We only need two partitions.  For simplicity and readability, we use two pointers `p_zero` and `p_nonzero` and advance them accordingly.  
+
+```python
+class Solution(object):
+    def moveZeroes(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: None Do not return anything, modify nums in-place instead.
+        """
+        p_zero = 0
+        p_nonzero = 0
+        
+        while p_nonzero < len(nums):
+            
+            if nums[p_nonzero] != 0:
+                nums[p_nonzero], nums[p_zero] = nums[p_zero], nums[p_nonzero]
+                p_zero += 1
+            
+            p_nonzero += 1
+```
+
+
+## [280. Wiggle Sort](https://leetcode.com/problems/wiggle-sort/description/)
+
+<p>Given an unsorted array <code>nums</code>, reorder it <b>in-place</b> such that <code>nums[0] &lt;= nums[1] &gt;= nums[2] &lt;= nums[3]...</code>.</p>
+
+<p><b>Example:</b></p>
+
+<pre><b>Input:</b> <code>nums = [3,5,2,1,6,4]</code>
+<b>Output:</b> One possible answer is [3,5,1,6,2,4]</pre>
+
+This is another variation of two-pointer swapping in array kind of problem.  Just keep in mind that for each iteration:
+
+* Keep track of the condition to swap.  Here we keep an additional flag `f` that flips every loop to track the direction
+* Remember to move the pointers.
+
+```python
+class Solution(object):
+    def wiggleSort(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: None Do not return anything, modify nums in-place instead.
+        """
+        if not nums:
+            return
+        i,j,f = 0,1,1
+
+        while j<len(nums):
+            if (f and nums[i]>nums[j]) or (not f and nums[i]<nums[j]):
+                nums[i], nums[j] = nums[j], nums[i]
+            i,j,f = i+1, j+1, f ^ 1
 ```
