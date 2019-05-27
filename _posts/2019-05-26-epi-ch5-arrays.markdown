@@ -1,11 +1,5 @@
 ---
 layout: post
-title: "lc042-trapping-rain-water"
-date: "2019-05-27 14:51:06 -0700"
----
-
----
-layout: post
 title: "EPI Chapter 5: Arrays"
 date: "2019-05-26 14:43:39 -0700"
 mathjax: true
