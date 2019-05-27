@@ -18,10 +18,10 @@ email: johnny.kwwang.us@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   I code, I vim, I coffee.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: https://jkwang.co # the base hostname & protocol for your site, e.g. http://example.com
-google_analytics: UA-139592064-1
+url: https://leetcode.jkwang.co # the base hostname & protocol for your site, e.g. http://example.com
+# google_analytics: UA-139592064-1
 disqus:
-  shortname: jkwang
+  shortname: jkwang_lc
 minima:
   social_links:
     github:  johnnykwwang
