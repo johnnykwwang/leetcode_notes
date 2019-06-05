@@ -1,0 +1,138 @@
+---
+layout: post
+title: "Path Sum I(112), II(113), III(437)"
+date: "2019-06-03 19:29:57 -0700"
+categories: [leetcode]
+---
+
+This is a collection of three Path Sum problem.
+
+<!--more-->
+
+# [112. Path Sum](https://leetcode.com/problems/path-sum/description/)
+
+<p>Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.</p>
+
+
+<p><strong>Note:</strong>&nbsp;A leaf is a node with no children.</p>
+
+<p><strong>Example:</strong></p>
+
+<p>Given the below binary tree and <code>sum = 22</code>,</p>
+
+<pre>
+      <strong>5</strong>
+     <strong>/</strong> \
+    <strong>4</strong>   8
+   <strong>/</strong>   / \
+  <strong>11</strong>  13  4
+ /  <strong>\</strong>      \
+7    <strong>2</strong>      1
+</pre>
+
+<p>return true, as there exist a root-to-leaf path <code>5-&gt;4-&gt;11-&gt;2</code> which sum is 22.</p>
+
+## Solutions
+
+This is a basic tree-traverse problem, and of course easily solvable via recursive-DFS.  The trick is to stop **before** reaching the None pointer, so that it won't duplicate any results.
+
+```python
+
+class Solution(object):
+    def hasPathSum(self, root, sum):
+        """
+        :type root: TreeNode
+        :type sum: int
+        :rtype: bool
+        """
+        if not root:
+            return False
+        return self.dfs(root, 0, sum)
+
+    def dfs(self, root, cur_sum, sum):
+        if root is None:
+            return False
+
+        if root.left is None and root.right is None:
+            return cur_sum+root.val==sum
+
+        else:
+            return self.dfs(root.left, cur_sum+root.val, sum) or self.dfs(root.right, cur_sum+root.val, sum)
+```
+
+---
+
+# [113. Path Sum II](https://leetcode.com/problems/path-sum-ii/description/)
+
+Given a binary tree and a sum, find all root-to-leaf paths where each path's sum equals the given sum.
+
+## Solution
+
+This is just the same problem with an added parameter `path` that we can use to log the path that this particular traversal has taken.
+
+```python
+class Solution(object):
+    def pathSum(self, root, sum):
+        self.ans = []
+        if not root:
+            return []
+        self.dfs(root, [], 0, sum)
+        return self.ans
+
+    def dfs(self, root, path, cur_sum, sum):
+        if root is None:
+            return
+
+        if root.left is None and root.right is None:
+            if cur_sum+root.val == sum:
+                self.ans.append(path+[root.val])
+                return
+        else:
+            self.dfs(root.left, path+[root.val], cur_sum+root.val, sum)
+            self.dfs(root.right, path+[root.val], cur_sum+root.val, sum)
+```
+
+---
+
+# [437. Path Sum III](https://leetcode.com/problems/path-sum-iii/description/)
+
+You are given a binary tree in which each node contains an integer value.
+
+Find the number of paths that sum to a given value.
+
+The path does not need to start or end at the root or a leaf, but it must go downwards (traveling only from parent nodes to child nodes).
+
+## Solution
+
+This is a very interesting variation.  A naive approach will be using two layer of DFS:
+
+* Use DFS to find every node in the Tree.
+  * For every node, run another DFS to determine if there's any path **starting here** that sums to `sum`.
+
+```python
+class Solution(object):
+    def pathSum(self, root, sum):
+        """
+        :type root: TreeNode
+        :type sum: int
+        :rtype: int
+        """
+        return self.dfs(root, sum)
+    
+    def dfs(self, root, sum):
+        if not root:
+            return 0
+        return self.pathSumsFromRoot(root, 0, sum) + \
+               self.dfs(root.left, sum) + self.dfs(root.right, sum)
+    
+    def pathSumsFromRoot(self, root, cur_sum, sum):
+        if root is None:
+            return 0
+        
+        r = 1 if cur_sum+root.val==sum else 0
+
+        return self.pathSumsFromRoot(root.left, cur_sum+root.val, sum) + r + \
+                   self.pathSumsFromRoot(root.right, cur_sum+root.val, sum)
+```
+
+
