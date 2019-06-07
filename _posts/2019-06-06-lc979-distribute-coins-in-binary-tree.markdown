@@ -1,10 +1,9 @@
 ---
 layout: post
-title: "1021: Distribute Coins in Binary Tree"
+title: "979: Distribute Coins in Binary Tree"
 date: "2019-06-06 22:24:10 -0700"
 categories: [leetcode]
 ---
-
 
 <p>Given the <code>root</code> of a binary tree with <code>N</code> nodes, each <code>node</code>&nbsp;in the tree has <code>node.val</code> coins, and there are <code>N</code> coins total.</p>
 
