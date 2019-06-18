@@ -3,6 +3,7 @@ layout: post
 title: "050: Pow(x, n)"
 date: "2019-05-19 14:58:37 -0400"
 categories: [leetcode]
+mathjax: true
 ---
 
 <p>Implement <a href="http://www.cplusplus.com/reference/valarray/pow/" target="_blank">pow(<em>x</em>, <em>n</em>)</a>, which calculates&nbsp;<em>x</em> raised to the power <em>n</em> (x<sup><span style="font-size:10.8333px">n</span></sup>).</p>
@@ -107,6 +108,19 @@ class Solution(object):
 ```
 
 ---
+
+# Related Problems
+
+## [69. Sqrt(x)](https://leetcode.com/problems/sqrtx/description/)
+
+Calculating square-root on the other hand, is much easier to solve using the good old `mid=(low+high)/2` kind of binary search.
+
+Keep in mind that the upper bound of the search can be further limited by the inequality:
+
+$$ \frac{a+b}{2} \geq \sqrt{ab} $$ 
+
+for $$  a,b>0 $$.  Therefore:
+
 
 # Techniques
 
