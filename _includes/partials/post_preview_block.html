@@ -23,5 +23,5 @@
 {%- if site.show_excerpts -%}
   {{ post.excerpt }}
 {%- endif -%}
-<a href="{{ post.url }}">See More</a>
+<a href="{{ post.url | relative_url }}">See More</a>
 
